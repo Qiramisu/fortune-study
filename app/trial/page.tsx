@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
 import { getStudyData, saveTrial } from '@/lib/storage';
 
 const TRIALS = [
@@ -98,7 +98,7 @@ type StudyData = {
   }>;
 };
 
-export default function TrialPage() {
+function TrialContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -150,9 +150,7 @@ export default function TrialPage() {
 
       const res = await fetch('/api/generate', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: promptText }),
       });
 
@@ -352,5 +350,21 @@ export default function TrialPage() {
         </button>
       </div>
     </main>
+  );
+}
+
+export default function TrialPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+          <div className="rounded-2xl bg-white p-8 shadow-lg">
+            <p className="text-gray-700">Loading... / 加载中...</p>
+          </div>
+        </main>
+      }
+    >
+      <TrialContent />
+    </Suspense>
   );
 }
