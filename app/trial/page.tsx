@@ -47,35 +47,35 @@ const TRIALS = [
 function getScenarioText(scenario: string) {
   if (scenario === 'Relationship') {
     return {
-      en: 'Imagine that you want to ask about your romantic or relationship future.',
-      zh: '假设你想询问自己未来的感情或亲密关系发展。',
+      en: 'Ask about your romantic future or relationship development.',
+      zh: '询问你未来的感情发展或亲密关系走向。',
     };
   }
 
   if (scenario === 'Career / Study') {
     return {
-      en: 'Imagine that you want to ask about your future in career or studies.',
-      zh: '假设你想询问自己未来的学业或职业发展。',
+      en: 'Ask about your future in studies, work, or career development.',
+      zh: '询问你未来的学业、工作或职业发展。',
     };
   }
 
   return {
-    en: 'Imagine that you want to ask about your personal future or life direction.',
-    zh: '假设你想询问自己未来的人生走向或生活方向。',
+    en: 'Ask about your personal future, major life changes, or life direction.',
+    zh: '询问你未来的人生走向、重要变化或生活方向。',
   };
 }
 
 function getStyleText(style: string) {
   if (style.includes('Subjective')) {
     return {
-      en: 'Please write in a more personal, emotional, and reflective way.',
-      zh: '请使用更个人化、更带有情绪和内心感受的方式来写你的提问。',
+      en: 'Please write your question in a more personal, emotional, and reflective way.',
+      zh: '请用更个人化、更带情绪和内心感受的方式来提问。',
     };
   }
 
   return {
-    en: 'Please write in a more neutral, factual, and less emotional way.',
-    zh: '请使用更中性、更客观、较少情绪表达的方式来写你的提问。',
+    en: 'Please write your question in a more neutral and factual way, avoiding emotional expressions.',
+    zh: '请用更客观、中性的方式来提问，尽量减少情绪表达。',
   };
 }
 
@@ -141,6 +141,11 @@ function TrialContent() {
   const handleGenerate = async () => {
     if (!promptText.trim()) {
       alert('Please write your prompt first. / 请先写下你的提问。');
+      return;
+    }
+
+    if (!promptText.match(/\d+/)) {
+      alert('Please include a number (1–78). / 请包含一个数字（1–78）。');
       return;
     }
 
@@ -239,6 +244,35 @@ function TrialContent() {
 
         <div className="mb-6 rounded-xl bg-gray-50 p-5">
           <h2 className="mb-2 text-xl font-semibold text-gray-900">
+            Task Instructions / 任务说明
+          </h2>
+
+          <p className="text-gray-700">
+            In this task, you will consult a tarot reader.
+          </p>
+          <p className="mt-2 text-gray-600">
+            在这个任务中，你将咨询一位塔罗占卜师。
+          </p>
+
+          <ul className="mt-3 list-disc pl-5 text-gray-700 space-y-1">
+            <li>Choose a number between 1 and 78</li>
+            <li>Think of a question related to the scenario below</li>
+            <li>Include BOTH the number and your question</li>
+          </ul>
+
+          <ul className="mt-3 list-disc pl-5 text-gray-600 space-y-1">
+            <li>选择一个 1–78 之间的数字</li>
+            <li>根据下方情境思考一个问题</li>
+            <li>在提问中同时包含数字和你的问题</li>
+          </ul>
+
+          <p className="mt-4 text-sm text-gray-500">
+            Example / 示例: My number is 12. Will my career improve next year?
+          </p>
+        </div>
+
+        <div className="mb-6 rounded-xl bg-green-50 p-5">
+          <h2 className="mb-2 text-xl font-semibold text-gray-900">
             Scenario / 情境
           </h2>
           <p className="text-gray-700">{scenarioText?.en}</p>
@@ -265,7 +299,7 @@ function TrialContent() {
           <textarea
             value={promptText}
             onChange={(e) => setPromptText(e.target.value)}
-            placeholder="Write your prompt here... / 请在这里写下你的提问..."
+            placeholder="e.g., My number is 7. Will my relationship improve? / 示例：我的数字是7，我的感情会变好吗？"
             className="min-h-[140px] w-full rounded-xl border border-gray-300 p-4 outline-none focus:border-blue-500"
           />
 
@@ -283,7 +317,7 @@ function TrialContent() {
 
         <div className="mb-6 rounded-xl bg-yellow-50 p-5">
           <h2 className="mb-2 text-xl font-semibold text-gray-900">
-            AI Response / AI 回答
+            Tarot Reading / 塔罗解读
           </h2>
 
           {aiResponse ? (
@@ -291,10 +325,10 @@ function TrialContent() {
           ) : (
             <div>
               <p className="text-gray-700">
-                No AI response yet. Please generate one after writing your prompt.
+                No response yet. Please generate a tarot reading after writing your prompt.
               </p>
               <p className="mt-2 text-gray-600">
-                还没有 AI 回答。请先写下提问，再点击按钮生成回答。
+                还没有解读结果。请先写下提问，再点击按钮生成塔罗解读。
               </p>
             </div>
           )}
@@ -317,7 +351,7 @@ function TrialContent() {
             ))}
           </select>
           <p className="mt-2 text-sm text-gray-600">
-            This response fits me well. / 这个回答与我很贴合。
+            This reading fits me well. / 这个解读与我很贴合。
           </p>
         </div>
 
@@ -338,7 +372,7 @@ function TrialContent() {
             ))}
           </select>
           <p className="mt-2 text-sm text-gray-600">
-            This response meets my expectations. / 这个回答符合我的预期。
+            This reading meets my expectations. / 这个解读符合我的预期。
           </p>
         </div>
 

@@ -19,13 +19,26 @@ export async function POST(req: Request) {
     }
 
     const systemPrompt = `
-You are a fortune-telling assistant.
-Respond in a warm, coherent, moderately detailed fortune-telling style.
-Do not mention that you are an AI.
-Keep the tone consistent.
-`.trim();
+You are a professional tarot reader.
 
-    const ollamaRes = await fetch('https://ollama.com/api/chat', {
+The user will provide:
+1) A number (1–78) representing a tarot card
+2) A question related to a life theme
+
+Your task:
+- Interpret the tarot meaning based on the number and the question
+- Give a short, insightful fortune-telling response
+- Keep it relevant to the user's question
+- Use a slightly mystical but clear tone
+
+Constraints:
+- Do NOT mention you are an AI
+- Do NOT explain tarot theory
+- Do NOT ask follow-up questions
+- Limit response to 150 words maximum
+`;
+
+    const res = await fetch('https://ollama.com/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,9 +54,9 @@ Keep the tone consistent.
       }),
     });
 
-    const data = await ollamaRes.json();
+    const data = await res.json();
 
-    if (!ollamaRes.ok) {
+    if (!res.ok) {
       return NextResponse.json(
         { error: data.error || 'Ollama Cloud request failed.' },
         { status: 500 }
@@ -51,15 +64,12 @@ Keep the tone consistent.
     }
 
     return NextResponse.json({
-      response: data?.message?.content || 'No response generated.',
+      response: data?.message?.content || '',
     });
-  } catch (error: any) {
-    console.error('Ollama Cloud generate error:', error);
-
+  } catch (err: any) {
+    console.error(err);
     return NextResponse.json(
-      {
-        error: error?.message || 'Failed to generate response.',
-      },
+      { error: err.message || 'Unknown error' },
       { status: 500 }
     );
   }
