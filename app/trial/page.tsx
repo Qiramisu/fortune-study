@@ -83,7 +83,6 @@ type StudyData = {
   participantId: string;
   demographics: {
     age: string;
-    gender: string;
     aiExperience: string;
     fortuneBelief: string;
   } | null;
@@ -207,7 +206,7 @@ function TrialContent() {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
         <div className="rounded-2xl bg-white p-8 shadow-lg">
-          <p className="text-gray-700">Loading... / 加载中...</p>
+          <p className="text-gray-900">Loading... / 加载中...</p>
         </div>
       </main>
     );
@@ -217,8 +216,8 @@ function TrialContent() {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
         <div className="rounded-2xl bg-white p-8 shadow-lg max-w-xl">
-          <p className="mb-4 text-gray-700">No study session found. / 未找到实验会话。</p>
-          <Link href="/" className="text-blue-600 underline">
+          <p className="mb-4 text-gray-900">No study session found. / 未找到实验会话。</p>
+          <Link href="/" className="text-blue-700 underline">
             Return Home / 返回首页
           </Link>
         </div>
@@ -232,64 +231,64 @@ function TrialContent() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-100 px-4 py-10">
-      <div className="mx-auto w-full max-w-3xl rounded-2xl bg-white p-8 shadow-lg">
-        <h1 className="mb-2 text-3xl font-bold text-gray-900">
+    <main className="min-h-screen bg-gray-100 px-3 py-6 sm:px-4 sm:py-10">
+      <div className="mx-auto w-full max-w-3xl rounded-2xl bg-white p-5 sm:p-8 shadow-lg">
+        <h1 className="mb-2 text-2xl sm:text-3xl font-bold text-gray-900">
           Trial {trialIndex + 1} / 实验任务 {trialIndex + 1}
         </h1>
 
-        <p className="mb-6 text-gray-600">
+        <p className="mb-6 text-gray-900">
           Participant ID: {studyData.participantId}
         </p>
 
-        <div className="mb-6 rounded-xl bg-gray-50 p-5">
-          <h2 className="mb-2 text-xl font-semibold text-gray-900">
+        <div className="mb-6 rounded-xl bg-gray-100 p-5">
+          <h2 className="mb-2 text-lg sm:text-xl font-semibold text-gray-900">
             Task Instructions / 任务说明
           </h2>
 
-          <p className="text-gray-700">
-            In this task, you will consult a tarot reader.
+          <p className="text-gray-900">
+            In this task, you will consult a tarot master.
           </p>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-gray-800">
             在这个任务中，你将咨询一位塔罗占卜师。
           </p>
 
-          <ul className="mt-3 list-disc pl-5 text-gray-700 space-y-1">
+          <ul className="mt-3 list-disc pl-5 text-gray-900 space-y-1">
             <li>Choose a number between 1 and 78</li>
             <li>Think of a question related to the scenario below</li>
             <li>Include BOTH the number and your question</li>
           </ul>
 
-          <ul className="mt-3 list-disc pl-5 text-gray-600 space-y-1">
+          <ul className="mt-3 list-disc pl-5 text-gray-800 space-y-1">
             <li>选择一个 1–78 之间的数字</li>
             <li>根据下方情境思考一个问题</li>
             <li>在提问中同时包含数字和你的问题</li>
           </ul>
 
-          <p className="mt-4 text-sm text-gray-500">
-            Example / 示例: My number is 12. Will my career improve next year?
+          <p className="mt-4 text-sm text-gray-700">
+            Example / 示例: 我的数字是12。我未来一年事业会变好吗？
           </p>
         </div>
 
-        <div className="mb-6 rounded-xl bg-green-50 p-5">
-          <h2 className="mb-2 text-xl font-semibold text-gray-900">
+        <div className="mb-6 rounded-xl bg-green-100 p-5">
+          <h2 className="mb-2 text-lg sm:text-xl font-semibold text-gray-900">
             Scenario / 情境
           </h2>
-          <p className="text-gray-700">{scenarioText?.en}</p>
-          <p className="mt-2 text-gray-600">{scenarioText?.zh}</p>
-          <p className="mt-3 text-sm text-gray-500">
+          <p className="text-gray-900">{scenarioText?.en}</p>
+          <p className="mt-2 text-gray-800">{scenarioText?.zh}</p>
+          <p className="mt-3 text-sm text-gray-700">
             {trial.scenario} / {trial.scenarioZh}
           </p>
         </div>
 
-        <div className="mb-6 rounded-xl bg-blue-50 p-5">
-          <h2 className="mb-2 text-xl font-semibold text-gray-900">
+        <div className="mb-6 rounded-xl bg-blue-100 p-5">
+          <h2 className="mb-2 text-lg sm:text-xl font-semibold text-gray-900">
             Prompt Style / 提问风格
           </h2>
-          <p className="text-gray-700">{trial.style}</p>
-          <p className="mt-2 text-gray-600">{trial.styleZh}</p>
-          <p className="mt-3 text-gray-700">{styleText?.en}</p>
-          <p className="mt-2 text-gray-600">{styleText?.zh}</p>
+          <p className="text-gray-900">{trial.style}</p>
+          <p className="mt-2 text-gray-800">{trial.styleZh}</p>
+          <p className="mt-3 text-gray-900">{styleText?.en}</p>
+          <p className="mt-2 text-gray-800">{styleText?.zh}</p>
         </div>
 
         <div className="mb-6">
@@ -299,35 +298,35 @@ function TrialContent() {
           <textarea
             value={promptText}
             onChange={(e) => setPromptText(e.target.value)}
-            placeholder="e.g., My number is 7. Will my relationship improve? / 示例：我的数字是7，我的感情会变好吗？"
-            className="min-h-[140px] w-full rounded-xl border border-gray-300 p-4 outline-none focus:border-blue-500"
+            placeholder="示例：我的数字是7。我最近的感情会有进展吗？ / Example: My number is 7. Will my relationship improve soon?"
+            className="min-h-[140px] w-full rounded-xl border border-gray-400 p-4 text-gray-900 outline-none focus:border-blue-600"
           />
 
           <button
             type="button"
             onClick={handleGenerate}
             disabled={loading}
-            className="mt-4 rounded-xl bg-purple-600 px-6 py-3 text-white font-medium transition hover:bg-purple-700 disabled:opacity-60"
+            className="mt-4 rounded-xl bg-purple-700 px-6 py-3 text-white font-medium transition hover:bg-purple-800 disabled:opacity-60"
           >
             {loading
               ? 'Generating... / 生成中...'
-              : 'Generate AI Response / 生成 AI 回答'}
+              : 'Generate Tarot Reading / 生成塔罗解读'}
           </button>
         </div>
 
-        <div className="mb-6 rounded-xl bg-yellow-50 p-5">
-          <h2 className="mb-2 text-xl font-semibold text-gray-900">
+        <div className="mb-6 rounded-xl bg-yellow-100 p-5">
+          <h2 className="mb-2 text-lg sm:text-xl font-semibold text-gray-900">
             Tarot Reading / 塔罗解读
           </h2>
 
           {aiResponse ? (
-            <p className="whitespace-pre-wrap text-gray-800">{aiResponse}</p>
+            <p className="whitespace-pre-wrap text-gray-900">{aiResponse}</p>
           ) : (
             <div>
-              <p className="text-gray-700">
-                No response yet. Please generate a tarot reading after writing your prompt.
+              <p className="text-gray-900">
+                No reading yet. Please generate one after writing your prompt.
               </p>
-              <p className="mt-2 text-gray-600">
+              <p className="mt-2 text-gray-800">
                 还没有解读结果。请先写下提问，再点击按钮生成塔罗解读。
               </p>
             </div>
@@ -341,7 +340,7 @@ function TrialContent() {
           <select
             value={selfFit}
             onChange={(e) => setSelfFit(e.target.value)}
-            className="w-full rounded-xl border border-gray-300 p-3"
+            className="w-full rounded-xl border border-gray-400 p-3 text-gray-900"
           >
             <option value="">Select a rating / 请选择评分</option>
             {[1, 2, 3, 4, 5, 6, 7].map((n) => (
@@ -350,7 +349,7 @@ function TrialContent() {
               </option>
             ))}
           </select>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-800">
             This reading fits me well. / 这个解读与我很贴合。
           </p>
         </div>
@@ -362,7 +361,7 @@ function TrialContent() {
           <select
             value={satisfaction}
             onChange={(e) => setSatisfaction(e.target.value)}
-            className="w-full rounded-xl border border-gray-300 p-3"
+            className="w-full rounded-xl border border-gray-400 p-3 text-gray-900"
           >
             <option value="">Select a rating / 请选择评分</option>
             {[1, 2, 3, 4, 5, 6, 7].map((n) => (
@@ -371,14 +370,14 @@ function TrialContent() {
               </option>
             ))}
           </select>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-800">
             This reading meets my expectations. / 这个解读符合我的预期。
           </p>
         </div>
 
         <button
           onClick={handleNext}
-          className="rounded-xl bg-blue-600 px-6 py-3 text-white font-medium transition hover:bg-blue-700"
+          className="w-full sm:w-auto rounded-xl bg-blue-700 px-6 py-3 text-white font-medium transition hover:bg-blue-800"
         >
           {trialIndex === TRIALS.length - 1 ? 'Finish / 完成' : 'Next / 下一步'}
         </button>
@@ -393,7 +392,7 @@ export default function TrialPage() {
       fallback={
         <main className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
           <div className="rounded-2xl bg-white p-8 shadow-lg">
-            <p className="text-gray-700">Loading... / 加载中...</p>
+            <p className="text-gray-900">Loading... / 加载中...</p>
           </div>
         </main>
       }

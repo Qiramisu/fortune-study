@@ -35,41 +35,32 @@ export default function FinishPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-100 px-4 py-10">
-      <div className="mx-auto w-full max-w-4xl rounded-2xl bg-white p-8 shadow-lg">
+    <main className="min-h-screen bg-gray-100 px-4 py-10 flex items-center justify-center">
+      <div className="w-full max-w-2xl rounded-2xl bg-white p-8 shadow-lg text-center">
         <h1 className="mb-4 text-3xl font-bold text-gray-900">
           Study Complete / 实验完成
         </h1>
 
-        <p className="mb-2 text-gray-700">
+        <p className="mb-2 text-gray-900">
           Thank you for participating.
         </p>
-        <p className="mb-8 text-gray-600">
-          感谢你的参与。
+        <p className="mb-8 text-gray-800">
+          感谢你的参与，请下载结果文件并提交。
         </p>
 
-        <div className="mb-8 rounded-xl bg-gray-50 p-5">
-          <h2 className="mb-4 text-xl font-semibold text-gray-900">
-            Current Saved Data / 当前已保存数据
-          </h2>
-          <pre className="overflow-x-auto whitespace-pre-wrap text-sm text-gray-700">
-            {JSON.stringify(data, null, 2)}
-          </pre>
-        </div>
-
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button
             onClick={downloadJSON}
-            className="rounded-xl bg-blue-600 px-6 py-3 text-white font-medium hover:bg-blue-700 transition"
+            className="rounded-xl bg-blue-700 px-6 py-3 text-white font-medium hover:bg-blue-800 transition"
           >
             Download Results / 下载结果
           </button>
 
           <button
             onClick={handleReset}
-            className="rounded-xl bg-red-600 px-6 py-3 text-white font-medium hover:bg-red-700 transition"
+            className="rounded-xl bg-red-700 px-6 py-3 text-white font-medium hover:bg-red-800 transition"
           >
-            Clear Data / 清空数据
+            Start Over / 重新开始
           </button>
         </div>
       </div>
