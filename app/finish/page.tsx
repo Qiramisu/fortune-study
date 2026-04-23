@@ -47,6 +47,12 @@ export default function FinishPage() {
         <p className="mb-8 text-gray-800">
           感谢你的参与，请下载结果文件并提交。
         </p>
+        <p className="mb-8 text-gray-900 font-medium">
+          Wenjuanxing may not support JSON upload. Please send the downloaded file directly to Vicky.
+          <br />
+          问卷星可能无法上传 JSON 文件，请将下载好的结果文件直接发给 Vicky。
+        </p>
+
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button
